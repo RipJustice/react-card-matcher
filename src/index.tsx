@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
 import './index.scss';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const CardGame = React.lazy(() => import('./pages/CardMatch/CardMatch'));
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Suspense fallback={''}>
+      <Router>
+        <Route exact path="/" component={CardGame} />      
+      </Router>
+    </Suspense>
   </React.StrictMode>,
   document.getElementById('root')
 );
