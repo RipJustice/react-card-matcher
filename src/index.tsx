@@ -12,11 +12,22 @@ const CardGame = React.lazy(() => import('./pages/CardMatch/CardMatch'));
 
 ReactDOM.render(
   <React.StrictMode>
-    <Suspense fallback={''}>
-      <Router>
-        <Route exact path="/" component={CardGame} />      
-      </Router>
-    </Suspense>
+    <div className="p-grid cm-app">
+      <div className="cm-header p-col-12 p-grid p-ai-center p-nogutter">
+        <h1>Card Matching Game</h1>
+      </div>
+      <div className="cm-main-wrapper p-col-12">
+        <main className="cm-main-panel p-grid p-jc-center p-ai-center p-nogutter">
+          <div className="cm-page-container p-shadow-2">
+            <Suspense fallback={''}>
+              <Router>
+                <Route exact path="/" component={CardGame} />      
+              </Router>
+            </Suspense>
+          </div>
+        </main>
+      </div>
+    </div>    
   </React.StrictMode>,
   document.getElementById('root')
 );

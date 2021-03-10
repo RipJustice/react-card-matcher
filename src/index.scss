@@ -1,0 +1,40 @@
+@import './assets/_vars';
+@import './assets/mixins';
+
+.cm-app {
+  .cm-header {
+    background: $blue;
+    color: $light;
+    height: 86px;
+    padding: 0 .5rem;
+    h1 {
+      margin-left: 40px;
+    }
+  }
+
+  .cm-main-wrapper {
+    min-height: calc(100vh - 86px);
+    background: $grey1;
+    margin-bottom: -8px;
+    .cm-main-panel {
+      height: 100%;
+      .cm-page-container {
+        background: $light;
+        padding: 20px;
+        height: calc(100% - 80px);
+        width: 100%;
+        margin: 40px;
+      }
+    }
+  }
+}
+
+@include mobile-small {
+  .cm-app {
+    .cm-header {
+      h1 {
+        font-size: $mid-font;
+      }
+    }
+  }
+}

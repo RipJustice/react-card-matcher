@@ -1,3 +1,25 @@
-.test {
-    background: grey;
+@import '../../assets/_vars';
+@import '../../assets/mixins';
+
+.card-directions {
+  padding-bottom:30px;
+}
+.cards-container {
+  gap: 10px;
+}
+
+@include mobile-medium {
+  .card-directions {
+    h2 {
+      font-size: $mid-font2;
+    }
+  }
+}
+
+@include mobile-small {
+  .card-directions {
+    h2 {
+      font-size: $small-font;
+    }
+  }
 }
