@@ -1,11 +1,11 @@
-import React, { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import ICard from '../../models/ICard';
 import './CardMatch.scss';
 
 function CardMatch() {
   const matchCards = useRef<ICard[]>([]);  
-  const allMatches = useRef<number>(); 
-  const [cardData, setcardData] = useState<ICard[]>();  
+  const allMatches = useRef<number>(0); 
+  const [cardData, setcardData] = useState<ICard[]>([]);  
   const [Win, setWin] = useState<boolean>();
 
   useEffect(() => {
@@ -25,6 +25,48 @@ function CardMatch() {
     }
   }
 
+  const cardFlip = (i: number) => {
+    const cards = cardData;
+    const singleCard = cards[i];
+    if (singleCard.status === 'initial' && matchCards.current.length < 2) {
+      singleCard.status = 'flipped';
+      cards[i] = singleCard;
+      setcardData(cards); 
+      matchCards.current.push(singleCard);
+
+      if (matchCards.current.length === 2) {
+        confirmMatch();
+      }
+    } else if (singleCard.status === 'flipped') {
+      singleCard.status = 'initial';
+      cards[i] = singleCard;
+      setcardData(cards); 
+      matchCards.current = [];
+    }
+  }
+
+  const confirmMatch = () => {
+    setTimeout(() => {
+      const card1 = matchCards.current[0];
+      const card2 = matchCards.current[1];
+      const cardsArray = cardData;
+      cardsArray.map(c => 
+        ( c.index === card1.index || c.index === card2.index) ?
+          card1.cardNum === card2.cardNum ? (c.status = 'match', allMatches.current += 1) : c.status = 'initial'
+        : c 
+      );  
+      setcardData(cardsArray);     
+      matchCards.current = [];
+      if (allMatches.current === cardData?.length) {
+        setWin(true);
+      }
+    }, 1000);
+  }
+
+  const doOver = () => {
+    getCardsData();
+  }
+
   if (!Win) {
     return (      
       <section>
@@ -33,7 +75,7 @@ function CardMatch() {
             If they don't they'll return to being face down and you'll have to try again. Match them all and YOU WIN!</h2>
         </div>
         <div className="cards-container p-grid p-jc-center p-nogutter">
-          
+          {cardData.map((card, index) => (console.log(card)))}
         </div>
       </section> 
     );
