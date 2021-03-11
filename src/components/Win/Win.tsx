@@ -1,7 +1,7 @@
 import { Button } from 'primereact/button';
 import './Win.scss';
 
-function Win() {
+function WinComponent() {
     return (
       <div className="win-container p-grid p-jc-center p-nogutter p-ai-center">
         <div className="p-text-center">
@@ -12,4 +12,4 @@ function Win() {
     );
   }
   
-export default Win;
+export default WinComponent;

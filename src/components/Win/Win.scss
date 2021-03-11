@@ -1,37 +1,36 @@
 @import '../../partials/vars';
 @import '../../partials/mixins';
 
-:host ::ng-deep {
-  .win-container {
+
+.win-container {
     height: calc(100vh - 222px);
     h1 {
-      font-size: $large-font;
+        font-size: $large-font;
     }
-  }
+}
 
-  .p-button-label {
+.p-button-label {
     font-size: $large-font2;
-  }
+}
 
-  @include mobile-medium {
+@include mobile-medium {
     .p-button-label {
-      font-size: $mid-font;
-    }
-    .win-container {
-      h1 {
-        font-size: $large-font2;
-      }
-    }
-  }
-
-  @include mobile-small {
-    .p-button-label {
-      font-size: $small-font;
-    }
-    .win-container {
-      h1 {
         font-size: $mid-font;
-      }
     }
-  }
+    .win-container {
+        h1 {
+        font-size: $large-font2;
+        }
+    }
+}
+
+@include mobile-small {
+    .p-button-label {
+        font-size: $small-font;
+    }
+    .win-container {
+        h1 {
+        font-size: $mid-font;
+        }
+    }
 }

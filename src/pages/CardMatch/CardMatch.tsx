@@ -1,13 +1,14 @@
 import { useRef, useState, useEffect } from 'react';
 import ICard from '../../models/ICard';
 import Card from '../../components/Card/Card';
+import WinComponent from '../../components/Win/Win';
 import './CardMatch.scss';
 
 function CardMatch() {
   const matchCards = useRef<ICard[]>([]);  
   const allMatches = useRef<number>(0); 
   const [cardData, setcardData] = useState<ICard[]>([]);  
-  const [Win, setWin] = useState<boolean>();
+  const [win, setWin] = useState<boolean>();
 
   useEffect(() => {
     getCardsData();
@@ -68,7 +69,7 @@ function CardMatch() {
     getCardsData();
   }
 
-  if (!Win) {
+  if (!win) {
     return (      
       <section>
         <div className="card-directions p-text-center">
@@ -83,7 +84,7 @@ function CardMatch() {
   } else {
     return (
       <section>
-
+        <WinComponent />
       </section>
     );
   }
