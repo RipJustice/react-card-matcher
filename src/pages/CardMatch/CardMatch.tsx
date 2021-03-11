@@ -27,10 +27,6 @@ function CardMatch() {
     }
   }
 
-  const test = () => {
-    alert('test');
-  }
-
   const cardFlip = (i: number) => {
     const cards = cardData;  
     const singleCard = cards[i];  
@@ -89,7 +85,7 @@ function CardMatch() {
   } else {
     return (
       <section>
-        <WinComponent />
+        <WinComponent resetGame={doOver}/>
       </section>
     );
   }
