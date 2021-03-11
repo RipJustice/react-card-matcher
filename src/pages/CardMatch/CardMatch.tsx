@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import ICard from '../../models/ICard';
+import Card from '../../components/Card/Card';
 import './CardMatch.scss';
 
 function CardMatch() {
@@ -14,7 +15,7 @@ function CardMatch() {
 
   const getCardsData = async() => {
     try {
-      const response = await fetch('MockCardData.json');   
+      const response = await fetch('assets/MockCardData.json');   
       const data = await response.json();
       data.sort(() => Math.random() - 0.5).map((d:ICard) => d.status = 'initial');
       allMatches.current = 0;   
@@ -75,7 +76,7 @@ function CardMatch() {
             If they don't they'll return to being face down and you'll have to try again. Match them all and YOU WIN!</h2>
         </div>
         <div className="cards-container p-grid p-jc-center p-nogutter">
-          {cardData.map((card, index) => (console.log(card)))}
+          {cardData.map((card, index) => <Card card={card} key={index} />)}
         </div>
       </section> 
     );

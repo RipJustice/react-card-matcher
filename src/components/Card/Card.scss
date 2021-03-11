@@ -1,0 +1,46 @@
+@import '../../partials/_vars';
+@import '../../partials/mixins';
+
+.cm-card {
+  border-radius: 10px;
+  height: 196px;
+  width: 139px;
+  perspective: 600px;
+  position: relative;
+  transition: transform 1s, opacity 1s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  &.initial {
+    transform: none;
+  }
+  &.flipped {
+    transform: rotateY(180deg);
+  }
+  &.match {
+    transform: scale(0.5);
+    opacity: 0;
+    cursor: context-menu;
+  }
+  .card-back {
+    @include card-faces;
+    img {
+      width: 90%;
+    }
+  }
+  .card-front {
+    @include card-faces;
+    padding: 10px;
+    transform: rotateY(180deg);
+    background: $light;
+    .card-circle {
+      border-radius: 50%;
+      width: 75px;
+      height: 75px;
+      border: 5px solid $dark;
+      h2 {
+        margin: 0;
+      }
+    }
+  }
+}
+
