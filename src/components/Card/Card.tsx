@@ -1,9 +1,9 @@
 import ICard from '../../models/ICard';
 import './Card.scss';
 
-function Card(props: {card: ICard}) {  
+function Card(props: {card: ICard, cardFlipClick: any}) {  
   return (
-    <div className={`cm-card p-shadow-4 ${props.card.status}`}>
+    <div className={`cm-card p-shadow-4 ${props.card.status}`} onClick={props.cardFlipClick}>
       <div className="card-back p-grid p-jc-center p-ai-center p-nogutter">
         <img src="assets/card.jpg" alt="card"/>
       </div>

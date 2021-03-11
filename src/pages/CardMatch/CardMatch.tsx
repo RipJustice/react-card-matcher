@@ -27,13 +27,18 @@ function CardMatch() {
     }
   }
 
+  const test = () => {
+    alert('test');
+  }
+
   const cardFlip = (i: number) => {
-    const cards = cardData;
-    const singleCard = cards[i];
+    const cards = cardData;  
+    const singleCard = cards[i];  
+
     if (singleCard.status === 'initial' && matchCards.current.length < 2) {
-      singleCard.status = 'flipped';
-      cards[i] = singleCard;
-      setcardData(cards); 
+      singleCard.status = 'flipped';      
+      cards[i] = singleCard;      
+      setcardData([...cards]);      
       matchCards.current.push(singleCard);
 
       if (matchCards.current.length === 2) {
@@ -42,7 +47,7 @@ function CardMatch() {
     } else if (singleCard.status === 'flipped') {
       singleCard.status = 'initial';
       cards[i] = singleCard;
-      setcardData(cards); 
+      setcardData([...cards]); 
       matchCards.current = [];
     }
   }
@@ -57,7 +62,7 @@ function CardMatch() {
           card1.cardNum === card2.cardNum ? (c.status = 'match', allMatches.current += 1) : c.status = 'initial'
         : c 
       );  
-      setcardData(cardsArray);     
+      setcardData([...cardsArray]);     
       matchCards.current = [];
       if (allMatches.current === cardData?.length) {
         setWin(true);
@@ -77,7 +82,7 @@ function CardMatch() {
             If they don't they'll return to being face down and you'll have to try again. Match them all and YOU WIN!</h2>
         </div>
         <div className="cards-container p-grid p-jc-center p-nogutter">
-          {cardData.map((card, index) => <Card card={card} key={index} />)}
+          {cardData.map((card, index) => <Card card={card} key={index} cardFlipClick={() => {cardFlip(index)}} />)}
         </div>
       </section> 
     );
